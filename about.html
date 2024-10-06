@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About Page</title>
+
+        <!-- Styling the text of the page -->
+        <style>
+        
+            /* Dark mode (default) style */
+            body {
+                background-color: #121212;
+                margin:0;
+                padding:0;
+                color: #f4f4f4
+            }
+    
+            h1, h2, p {
+                text-align: center;
+            }
+    
+            p{
+                font-size:1.25em;
+            }
+    
+            /* Light mode style */
+            body.light-mode{
+                background-color: #f4f4f4;
+                color:#121212;
+                margin:0;
+                padding:0;
+            }
+    
+            /* Designing a header for user ease and appealing design */
+            header {
+                background-color: rgb(65, 64, 64);
+                color: white;
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            }
+            header h1{
+                margin:0;
+                padding:0;
+            }
+    
+            /* Styling button section to go to other pages */
+            nav {
+                display: flex;
+                justify-content: center;
+                gap: 50px;
+            }
+    
+            /* Styling the buttons themselves, removing link underline */
+            nav a {
+                color:white;
+                text-decoration: none;
+                font-size: 18px;
+                padding: 5px;
+                margin-bottom: 5px;
+                transition: color 0.15s;
+            }
+            /* Adding a transition to different color when hovering over button */
+            nav a:hover{
+                color: rgb(117, 79, 155);
+            }
+    
+            /* Differently colored divider under header for design */
+            .divider {
+                width: 100%;
+                height: 15px;
+                background-color: rgb(137, 137, 137);
+            }
+    
+            /* grid design for content of page */
+            .grid-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                align-items: center;
+                padding:20px;
+            }
+
+            /* Class for dark mode background colors, changes for readability */
+            .color-one-dark {
+                background-color: #212121;
+            }
+
+            .color-two-dark {
+                background-color: #3e3e3e;
+            }
+
+            /* Class for light mode colors */
+            .color-one-light{
+                background-color: #909090;
+            }
+
+            .color-two-light{
+                background-color: #d0d0d0;
+            }
+    
+            /* Adding responsiveness to grid, adjusting to 1 column if on a smaller screen */
+            @media screen and (max-width: 1200px){
+                .grid-container {
+                    grid-template-columns: 1fr;
+                    align-items: center;
+                }
+                .grid-item {
+                    justify-self: center;
+                    display: block;
+                }
+            }
+    
+            /* Class to group header/divider for border */
+            .header-divider{
+                border-radius: 0 0 20px 20px;
+                overflow:hidden;
+                margin-bottom: 40px;
+            }
+    
+            /* Adding a class to keep all content (besides header) inside of a width to not use full screen*/
+            .page-content{
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+    
+            /* Stylizing links for page content */
+            .page-content a{
+                text-decoration: none;
+                color:#9ba1d9;
+                transition: color 0.15s;
+            }
+            .page-content a:hover{
+                color:#575b7b
+            }
+            </style>
+    </head>
+
+    <body>
+        
+        <!-- Code for header and divider at top of page -->
+        <div class="header-divider">
+            <header>
+                <h1 style="font-size: clamp(24px, 6vw, 52px); color:rgb(216, 216, 216)">About</h1>
+    
+                <nav>
+                    <a href="home.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <button type="button" id = "colorButton" onclick="colorModeShift()">Light Mode</button>
+                </nav>
+            </header>
+    
+            <div class="divider"></div>
+        </div>
+
+        <!-- JavaScript for shifting color for night mode/dark mode button and background colors -->
+        <script>
+            function colorModeShift() {
+                var element = document.body;
+                var button = document.getElementById("colorButton");
+                var welcomeMessage = document.getElementById("welcomeSite");
+
+                /* Selecting classes for adding/removing color classes */
+                const colorOneDark = document.querySelectorAll(".color-one-dark");
+                const colorTwoDark = document.querySelectorAll(".color-two-dark");
+                const colorOneLight = document.querySelectorAll(".color-one-light");
+                const colorTwoLight = document.querySelectorAll(".color-two-light");
+
+
+                element.classList.toggle("light-mode");
+
+                if (element.classList == "light-mode"){
+                    button.textContent = "Dark Mode"; 
+
+                    /* Changing background colors from dark to light for first and second colors */
+                    colorOneDark.forEach(element => {
+                        element.classList.add("color-one-light");
+                        element.classList.remove("color-one-dark");
+                    });
+
+                    colorTwoDark.forEach(element => {
+                        element.classList.add("color-two-light");
+                        element.classList.remove("color-two-dark");
+                    });
+                } else {
+                    button.textContent = "Light Mode";
+                    
+                    /* Changing background colors from light to dark for first and second colors */
+                    colorOneLight.forEach(element => {
+                        element.classList.add("color-one-dark");
+                        element.classList.remove("color-one-light");
+                    });
+
+                    colorTwoLight.forEach(element => {
+                        element.classList.add("color-two-dark");
+                        element.classList.remove("color-two-light");
+                    });
+                }
+
+
+                console.log("Success");
+            }
+        </script>
+
+        <!-- Main page content -->
+        <div class="page-content">
+
+            <!-- Used to contain the image at the top in the center in its own grid -->
+            <div class="grid-container" style="margin-top:20px; grid-template-columns: 1fr; justify-items: center;">
+
+                <div class="grid-photo" style="object-fit: contain; justify-items: center;"> 
+
+                    <img src="me2.jpg" style="border-radius: 5px; width: 100%; height:auto; max-width: 1000px; justify-self: center;">
+
+                </div>
+
+            </div>
+
+            <!-- From here, grid containers for text with corresponding color class, will shift based on light/dark mode -->
+            <div class="grid-container color-one-dark" style="border-radius: 20px;">
+
+                <div class="grid-item" style="object-fit: contain; align-self: baseline;">
+
+                    <h1>Who Am I?</h1>
+
+                </div>
+
+                <div class="grid-item">
+
+                    <p>I am Adam Hutcheson. I'm currently a student studying IT at <a href="kennesaw.edu">Kennesaw State University</a>. I graduated from Houston County High School in Warner Robins, GA in 2022. </p>
+
+                </div>
+
+            </div>
+
+            <div class="grid-container color-two-dark" style="border-radius: 20px; margin-top:20px;">
+
+                <div class="grid-item" style="object-fit: contain; align-self:baseline;">
+
+                    <h1>Experiences</h1>
+
+                </div>
+
+                <div class="grid-item">
+
+                    <p>Through my classes, I have spent a lot of time doing various projects and learning skills in the field of computing. I have knowledge on programming in Java and Python, working with SQL, and I have been learning HTML, CSS, and JavaScript in my Web Development class, as well as principles of software development and working in groups for development in other classes. </p>
+
+                </div>
+
+            </div>
+
+            <div class="grid-container color-one-dark" style="border-radius: 20px; margin-top: 20px;">
+
+                <div class="grid-item" style="object-fit: contain; align-self: baseline;">
+
+                    <h1>Goals</h1>
+
+                </div>
+
+                <div class="grid-item" style="object-fit: contain; align-self: baseline;">
+
+                    <p>In the future, I hope to work on and add more projects to my portfolio to showcase my newly developed skills. Since I have a concentration in Cyber Operations Security, I believe something relating to cybersecurity would be a very interesting career field and I am looking to work 
+                        in a job such as this in the future. In the more immediate future, I am looking to continue learning more aspects of IT and look towards getting into an internship, as well as generally more experience in work.
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+</html>

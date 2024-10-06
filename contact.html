@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<title>Contact Page</title>
+
+<style>
+        
+        /* Dark mode (default) style */
+        body {
+            background-color: #121212;
+            margin:0;
+            padding:0;
+            color: #f4f4f4;
+        }
+
+        h1, h2, p {
+            text-align: center;
+        }
+
+        p{
+            font-size:1.25em;
+        }
+
+        /* Light mode style */
+        body.light-mode{
+            background-color: #f4f4f4;
+            color:#121212;
+            margin:0;
+            padding:0;
+        }
+
+        /* Designing a header for user ease and appealing design */
+        header {
+            background-color: rgb(65, 64, 64);
+            color: white;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        header h1{
+            margin:0;
+            padding:0;
+        }
+
+        /* Styling button section to go to other pages */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        /* Styling the buttons themselves, removing link underline */
+        nav a {
+            color:white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 5px;
+            margin-bottom: 5px;
+            transition: color 0.15s;
+        }
+        /* Adding a transition to different color when hovering over button */
+        nav a:hover{
+            color: rgb(117, 79, 155);
+        }
+
+        /* Differently colored divider under header for design */
+        .divider {
+            width: 100%;
+            height: 15px;
+            background-color: rgb(137, 137, 137);
+        }
+
+        /* grid design for content of page */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Adding responsiveness to grid, adjusting to 1 column if on a smaller screen */
+        @media screen and (max-width: 1200px){
+            .grid-container {
+                grid-template-columns: 1fr;
+                align-items: center;
+            }
+            .grid-item {
+                justify-self: center;
+                display: block;
+            }
+        }
+
+        /* Class to group header/divider for border */
+        .header-divider{
+            border-radius: 0 0 20px 20px;
+            overflow:hidden;
+            margin-bottom: 40px;
+        }
+
+        /* Adding a class to keep all content (besides header) inside of a width to not use full screen*/
+        .page-content{
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Stylizing links for page content */
+        .page-content a{
+            text-decoration: none;
+            color:#9ba1d9;
+            transition: color 0.15s;
+        }
+        .page-content a:hover{
+            color:#575b7b
+        }
+
+        /* Form element container */
+        .form-element{
+            margin-bottom: 20px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        /* Form styles w/ light mode */
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #313131;
+            width:50%; height:auto;
+            border-radius: 20px;
+        }
+        form.light-mode{
+            background-color: #bcbcbc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width:50%; height:auto;
+            border-radius: 20px;
+        }
+
+</style>
+
+<body>
+
+    <!-- Code for header and divider at top of page -->
+    <div class="header-divider">
+        <header>
+            <h1 style="font-size: clamp(24px, 6vw, 52px); color:rgb(216, 216, 216)">Contact</h1>
+
+            <nav>
+                <a href="home.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <button type="button" id = "colorButton" onclick="colorModeShift()">Light Mode</button>
+            </nav>
+        </header>
+
+        <div class="divider"></div>
+    </div>
+
+    <!-- JavaScript for shifting color for night mode/dark mode button -->
+    <script>
+        function colorModeShift() {
+            var element = document.body;
+            var form = document.querySelector("form");
+            var button = document.getElementById("colorButton");
+
+            element.classList.toggle("light-mode");
+            form.classList.toggle("light-mode");
+
+            if (element.classList == "light-mode"){
+                button.textContent = "Dark Mode"; 
+            } else {
+                button.textContent = "Light Mode";
+            }
+
+
+            console.log("Success");
+        }
+    </script>
+
+    <!-- Main page content -->
+    <div class="page-content" style="display:flex; align-items: center; justify-content: center;">
+
+        <!-- Form -->
+        <form id="form">
+            <!-- message to handle submission status, relates to script below -->
+            <p id="form-top-message"></p>
+
+            <div class="form-element">
+
+                <label for="name">Name</label><br>
+                <input type="text" id="name" name="name"></input>
+
+            </div>
+            
+            <div class="form-element">
+
+                <label for="email">Email</label><br>
+                <input type="text" id="email" name="email">
+
+            </div>
+            
+            <div class="form-element">
+
+                <label for="message">Message</label><br>
+                <textarea style="resize: none;" rows="10" cols="50" type="text" id="message" name="message"></textarea>
+
+            </div>
+
+            <input type="submit" style="margin-bottom: 10px;">
+            
+    
+        </form>
+
+        <!-- Script for handling submit / verifying -->
+        <script>
+            
+            document.getElementById("form").addEventListener("submit", function(event){
+
+                var name = document.getElementById("name").value;
+                var email = document.getElementById("email").value;
+                var message = document.getElementById("message").value;
+
+                /* If any input is empty... */
+                if(name === "" || email === "" || message === ""){
+                    event.preventDefault();
+
+                    document.getElementById("form-top-message").textContent = "One or more boxes are missing information";
+                    document.getElementById("form-top-message").style.color = "red";
+
+                } else {
+                    /* For the moment, form set to not send until functionality is added */
+                    event.preventDefault();
+
+                    document.getElementById("form-top-message").textContent = "Successfully submitted";
+                    document.getElementById("form-top-message").style.color = "green";
+                }
+
+            });
+
+        </script>
+
+    </div>
+
+</body>
+
+</html>
