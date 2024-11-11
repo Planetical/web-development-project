@@ -181,28 +181,28 @@
     <div class="page-content" style="display:flex; align-items: center; justify-content: center;">
 
         <!-- Form -->
-        <form id="form">
+        <form id="form" action="/submit-form" method="post">
             <!-- message to handle submission status, relates to script below -->
             <p id="form-top-message"></p>
 
             <div class="form-element">
 
                 <label for="name">Name</label><br>
-                <input type="text" id="name" name="name"></input>
+                <input type="text" id="name" name="name" required>
 
             </div>
             
             <div class="form-element">
 
                 <label for="email">Email</label><br>
-                <input type="text" id="email" name="email">
+                <input type="text" id="email" name="email" required>
 
             </div>
             
             <div class="form-element">
 
                 <label for="message">Message</label><br>
-                <textarea style="resize: none;" rows="10" cols="50" type="text" id="message" name="message"></textarea>
+                <textarea style="resize: none;" rows="10" cols="50" type="text" id="message" name="message" required></textarea>
 
             </div>
 
@@ -212,7 +212,7 @@
         </form>
 
         <!-- Script for handling submit / verifying -->
-        <script>
+        <!-- <script>
             
             document.getElementById("form").addEventListener("submit", function(event){
 
@@ -237,7 +237,7 @@
 
             });
 
-        </script>
+        </script> -->
 
     </div>
 
