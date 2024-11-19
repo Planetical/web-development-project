@@ -153,6 +153,23 @@
             }
         </script>
 
+        <!-- Adding text which changes to say good morning/afternoon/evening based on time -->
+        <script>
+            function welcomeTimeChange() {
+                const date = new Date();
+                const hr = date.getHours();
+                var message = document.getElementById("timeMessage");
+
+                if (hr < 12){
+                    message.textContent = "Good morning!";
+                } else if (hr < 18){
+                    message.textContent = "Good afternoon!";
+                } else {
+                    message.textContent = "Good evening!";
+                }
+            }
+        </script>
+
         <!-- Main page content -->
         <div class="page-content">
 
@@ -162,12 +179,13 @@
                     <figure>
                     <img style="width: 100%; height: auto; max-width:650px; object-fit: contain; border-radius: 5px;"
                     src="hummingpic.jpg" alt="Hummingbird photo">
-                    <figcaption>Hummingbird photo, taken by me</figcaption>
+                    <figcaption style="text-align: center;">Hummingbird photo, taken by me</figcaption>
                     </figure>
                 </div>
 
                 <div class="grid-item" style="align-self: start;">
                     <h1 style="color:#fdeb5a; font-size:4em; margin-bottom: 100px;" id="welcomeSite">Welcome to my website!</h1>
+                    <p id="timeMessage">Hello!</p>
                     <p>This is a site dedicated to showcasing my skills in web development, web design, and overall skills and experience.</p>
                     <p style="margin-top: 50px;">You are currently on the Home page. On the <a href="about.html">About page</a>, you can find more information on me and my background.
                     On the <a href="contact.html">Contact page</a>, you can find a method of contacting me.</p>
