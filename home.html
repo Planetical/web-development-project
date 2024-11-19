@@ -115,7 +115,7 @@
         
     </head>
 
-    <body onload="welcomeTimeChange()">
+    <body>
 
         <!-- Code for header and divider at top of page -->
         <div class="header-divider">
@@ -153,22 +153,7 @@
             }
         </script>
 
-        <!-- Adding text which changes to say good morning/afternoon/evening based on time -->
-        <script>
-            function welcomeTimeChange() {
-                const date = new Date();
-                const hr = date.getHours();
-                var message = document.getElementById("timeMessage");
-
-                if (hr < 12){
-                    message.textContent = "Good morning!";
-                } else if (hr < 18){
-                    message.textContent = "Good afternoon!";
-                } else {
-                    message.textContent = "Good evening!";
-                }
-            }
-        </script>
+        
 
         <!-- Main page content -->
         <div class="page-content">
@@ -193,7 +178,31 @@
             </div>
             
         </div>
-        
+
+        <!-- Adding text which changes to say good morning/afternoon/evening based on time -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                welcomeTimeChange();
+            });
+
+            function welcomeTimeChange() {
+                const date = new Date();
+                const hr = date.getHours();
+                var message = document.getElementById("timeMessage");
+
+                if(message){
+                    if (hr < 12){
+                        message.innerHTML = "Good morning!";
+                    } else if (hr < 18){
+                        message.innerHTML = "Good afternoon!";
+                    } else {
+                        message.innerHTML = "Good evening!";
+                    }
+                } else {
+                    console.log("error");
+                }
+            }
+        </script>
 
     </body>
 </html>
